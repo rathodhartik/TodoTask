@@ -95,6 +95,8 @@ class task_exportAPI(APIView):
     def post(self, request):
       t_id=request.data['t_id']
       token=request.data["access_token"]
+      user = get_user_list(token)
+      print(user,".......................")
       events = get_task_list(token)
       todo_id=events['value'][0]['id']
       for ta in t_id:
@@ -142,6 +144,7 @@ class tasks_SYNC_API(APIView):
             print(task_st)
             # user_data.task=events_data['title']
             user_data.status=task_st[0]
+            user_data.due_date=str(events_data['dueDateTime']['dateTime'])
             user_data.save()
           except Exception as e:
             user_data=None

@@ -4,7 +4,7 @@ from django.template.loader import get_template
 
 graph_url = 'https://graph.microsoft.com/v1.0'
 
-def get_user(token):
+def get_user_list(token):
   user = requests.get(
     '{0}/me'.format(graph_url),
     headers={
